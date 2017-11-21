@@ -83,7 +83,8 @@ services:
     networks: ["vnet"]
     hostname: thrift-1.vnet
     image: smizy/hbase:1.2.6-alpine
-    expose: [9090]
+    ports:
+      - "9090:9090"
     depends_on: ["zookeeper-1"]
     environment:
       - SERVICE_9090_NAME=thrift
