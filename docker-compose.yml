@@ -78,6 +78,21 @@ services:
       
     command: regionserver
 
+  thrift-1:
+    container_name: thrift-1
+    networks: ["vnet"]
+    hostname: thrift-1.vnet
+    image: smizy/hbase:1.2.6-alpine
+    expose: [9090]
+    depends_on: ["zookeeper-1"]
+    environment:
+      - SERVICE_9090_NAME=thrift
+      - SERVICE_9090_IGNORE=true
+      - HBASE_ZOOKEEPER_QUORUM=zookeeper-1.vnet:2181
+      
+    command: thrift
+
+
 networks:
   vnet:
     external:
